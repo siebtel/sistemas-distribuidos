@@ -2,4 +2,3 @@ Pillow
 pytesseract
 pdf2image
 requests2
-python-poppler
