@@ -9,7 +9,7 @@ import os, os.path
 # pathlib.Path().resolve()
 # Path of the pdf 
 
-path = './pdfs'
+path = './pdfs/'
 pdf_files_name = os.listdir(path)
 ''' 
 Part #1 : Converting PDF to images 

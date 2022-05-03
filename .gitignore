@@ -152,3 +152,7 @@ cython_debug/
 #.idea/
 
 sucuri-venv/
+
+poppler-22.04.0/
+
+pdf2txt/
