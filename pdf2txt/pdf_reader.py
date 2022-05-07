@@ -9,26 +9,23 @@ import os, os.path
 # pathlib.Path().resolve()
 # Path of the pdf 
 
-path = './pdfs/'
-pdf_files_name = os.listdir(path)
 ''' 
 Part #1 : Converting PDF to images 
 '''
-for number_of_file, file_name in enumerate(pdf_files_name):
-	print('number_of_file: ', number_of_file, "file name: ", file_name)
-	PDF_file = path + file_name
-	outfile = "./txt_from_pdf/" + file_name + ".txt"
-	if os.path.isfile(outfile):
-		continue
-	# Store all the pages of the PDF in a variable 
-	pages = convert_from_path(PDF_file, 500) 
+def pdf2image(file_name):
+	file_name = file_name[0]
+	file_name = file_name[2:]
 
+	print("pdf to jpg: ", file_name)
+	# Store all the pages of the PDF in a variable 
+	pages = convert_from_path(file_name, 500) 
+
+	file_name = file_name[5:-4] # retirando extensao e raiz da pasta do arquivo original
 	# Counter to store images of each page of PDF to image 
 	image_counter = 1
 
 	# Iterate through all the pages stored above 
 	for page in pages: 
-		print("pdf to jpg: ", image_counter)
 		# Declaring filename for each page of PDF as JPG 
 		# For each page, filename will be: 
 		# PDF page 1 -> page_1.jpg 
@@ -36,10 +33,14 @@ for number_of_file, file_name in enumerate(pdf_files_name):
 		# PDF page 3 -> page_3.jpg 
 		# .... 
 		# PDF page n -> page_n.jpg 
-		filename = "./temp_images/page_"+str(image_counter)+".jpg"
-		
+		if os.path.isdir("./temp_images/"+str(file_name)+"/"):
+			ouput_filename = "./temp_images/" +str(file_name)+"/page_"+str(image_counter)+".jpg"
+		else:
+			os.mkdir("./temp_images/"+str(file_name))
+			ouput_filename = "./temp_images/" +str(file_name)+"/page_"+str(image_counter)+".jpg"
+
 		# Save the image of the page in system 
-		page.save(filename, 'JPEG') 
+		page.save(ouput_filename, 'JPEG') 
 
 		# Increment the counter to update filename 
 		image_counter = image_counter + 1
@@ -47,7 +48,9 @@ for number_of_file, file_name in enumerate(pdf_files_name):
 	''' 
 	Part #2 - Recognizing text from the images using OCR 
 	'''
+def image2txt(filename):
 
+	outfile = "./txt_from_pdf/" + file_name + ".txt"
 	# Variable to get count of total number of pages 
 	filelimit = image_counter-1
 
