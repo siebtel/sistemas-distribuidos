@@ -40,4 +40,4 @@ def pdf2image(file_name):
 		# Increment the counter to update filename 
 		image_counter = image_counter + 1
 
-		return ouput_filename
+	return ouput_filename
