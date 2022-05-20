@@ -11,7 +11,7 @@
       "program": "${file}",
       "console": "integratedTerminal",
       "justMyCode": true,
-      "args": ["2", "./pdf2txt/pdfs/"],
+      "args": ["4", ".\\pdf2txt\\pdfs"],
       "cwd": "B:\\siebt\\Documents\\GitHub\\sistemas-distribuidos",
       "env": {
         "PopplerBin": "B:\\siebt\\Documents\\GitHub\\sistemas-distribuidos\\poppler-22.04.0\\Library\\bin",
