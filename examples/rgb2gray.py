@@ -1,6 +1,6 @@
 import os
 import sys
-
+import time
 sys.path.append(os.environ['PYDFHOME'])
 from pyDF import *
 
@@ -38,38 +38,38 @@ def rgb2gray(args):
 def print_name(args):
     fname = args[0]
 
-    print "Converted %s" %fname
+    print("Converted %s" %fname)
 
 
 
+if __name__ == '__main__':
+    start = time.time()
+    nprocs = int(sys.argv[1])
+    file_list = list_imgs(sys.argv[2])[:1000]
 
-nprocs = int(sys.argv[1])
-file_list = list_imgs(sys.argv[2])[:1000]
-
-graph = DFGraph()
-sched = Scheduler(graph, nprocs, mpi_enabled = False)
-
-
-
-feed_files = Source(file_list)
-
-convert_file = FilterTagged(rgb2gray, 1)  
-
-pname = Serializer(print_name, 1)
+    graph = DFGraph()
+    sched = Scheduler(graph, nprocs, mpi_enabled = False)
 
 
-graph.add(feed_files)
-graph.add(convert_file)
-graph.add(pname)
+
+    feed_files = Source(file_list)
+
+    convert_file = FilterTagged(rgb2gray, 1)  
+
+    pname = Serializer(print_name, 1)
 
 
-feed_files.add_edge(convert_file, 0)
-convert_file.add_edge(pname, 0)
+    graph.add(feed_files)
+    graph.add(convert_file)
+    graph.add(pname)
 
 
-sched.start()
+    feed_files.add_edge(convert_file, 0)
+    convert_file.add_edge(pname, 0)
 
-
+    sched.start()
+    end = time.time()
+    print(str(end - start) + ' time elapsed')
 
 
 

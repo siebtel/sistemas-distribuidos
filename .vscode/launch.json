@@ -1,0 +1,23 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: main sucuri",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": ["2", "./pdf2txt/pdfs/"],
+      "cwd": "B:\\siebt\\Documents\\GitHub\\sistemas-distribuidos",
+      "env": {
+        "PopplerBin": "B:\\siebt\\Documents\\GitHub\\sistemas-distribuidos\\poppler-22.04.0\\Library\\bin",
+        "PATH": "${env:Poppler};${env:PATH}",
+        "Poppler": "B:\\siebt\\Documents\\GitHub\\sistemas-distribuidos\\"
+      }
+    }
+  ]
+}
