@@ -1,7 +1,9 @@
 import pdf_reader
 import sys, os
 
-sys.path.append(os.environ['PYDFHOME'])
+# sys.path.append(os.environ['PYDFHOME'])
+sys.path.append('../')
+
 from pyDF import *
 
 path = './pdfs/'
@@ -17,15 +19,16 @@ def list_pdfs(rootdir):
     return fnames
 
 def print_name(args):
-    fname = args[0]
-
-    print("Converted %s" %fname)
+	fname = args[0]
+	print("args", args)
+	print("Converted %s" %fname)
+	return fname
 
 
 
 if __name__ == '__main__':
 	nprocs = int(sys.argv[1]) # number of processors
-	file_list = list_pdfs(sys.argv[2])[:1000] # list of files to convert
+	file_list = list_pdfs(sys.argv[2])[:2] # list of files to convert
 
 	graph = DFGraph()
 	sched = Scheduler(graph, nprocs, mpi_enabled = False)
@@ -48,8 +51,4 @@ if __name__ == '__main__':
 
 
 	sched.start()
-
-
-
-
 
