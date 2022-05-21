@@ -337,5 +337,3 @@ class Scheduler:
 
         print("Waiting {}".format(self.waiting))		
         self.terminate_workers(self.workers)
-
-

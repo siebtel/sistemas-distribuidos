@@ -151,11 +151,12 @@ class Serializer(Node):
             opers = [Oper(workerid, None, None, None)]
             self.sendops(opers, operq)
             return 0
-
-        for (arg, argbuffer) in map(None, args, self.arg_buffer):
-            bisect.insort(argbuffer, arg.val)
-            #print "Argbuffer %s" %argbuffer
+            
+        for arg in args:
+            self.arg_buffer[0].append(arg.val)
+            #print "Argbuffer %s" %argbuffer        
         #print "Got operand with tag %s (expecting %d) %s Worker %d" %([arg.val for arg in args], self.next_tag, [arg.val for arg in argbuffer], workerid)
+        
         if args[0].val.tag == self.next_tag:
             next = self.next_tag
             argbuffer = self.arg_buffer
@@ -172,5 +173,3 @@ class Serializer(Node):
                     buffertag = None
 
             self.next_tag = next
-
-
